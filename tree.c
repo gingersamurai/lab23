@@ -18,6 +18,7 @@ node *create_node(dtype value){
     res_node->data = value;
     res_node->l = NULL;
     res_node->r = NULL;
+    res_node->prev = NULL;
 
     return res_node;
 }
@@ -27,12 +28,14 @@ void insert_node(node *now_node, node *cur_node){
     if (cur_node->data < now_node->data){
         if (now_node->l == NULL){
             now_node->l = cur_node;
+            cur_node->prev = now_node;
         } else {
             insert_node(now_node->l, cur_node);
         }
     } else {
         if (now_node->r == NULL ){
             now_node->r = cur_node;
+            cur_node->prev = now_node;
         } else {
             insert_node(now_node->r, cur_node);
         }
@@ -89,23 +92,35 @@ node *find_node(node* now_node, dtype value){
 void delete_node(node *cur_node){
     if (cur_node == NULL) return;
     if (cur_node->l == NULL && cur_node->r == NULL){
-        fprintf(stderr, "list\n");
+        if (cur_node == cur_node->prev->l) cur_node->prev->l = NULL;
+        else cur_node->prev->r = NULL;
         free(cur_node);
     } else if (cur_node->l == NULL && cur_node->r != NULL){
-        fprintf(stderr, "r\n");
-        node *buff;
-        buff->l = cur_node->r->l;
-        buff->r = cur_node->r->r;
-        buff->data = cur_node->r->data;
-        free(cur_node->r);
-        cur_node = buff;
+        node *new_cur = cur_node->r;
+        node *old_prev = cur_node->prev;
+        if (old_prev->r == cur_node){
+            free(cur_node);
+            old_prev->r = new_cur;
+        } else {
+            free(cur_node);
+            old_prev->l = new_cur;
+        }
+        
+        // cur_node = buff;
     } else if (cur_node->l != NULL && cur_node->r == NULL){
-        fprintf(stderr, "l\n");
-        node *buff;
-        buff->l = cur_node->l->l;
-        buff->r = cur_node->l->r;
-        buff->data = cur_node->l->data;
-        free(cur_node->l);
-        cur_node = buff;
+        node *new_cur = cur_node->l;
+        node *old_prev = cur_node->prev;
+        if (old_prev->r == cur_node){
+            free(cur_node);
+            old_prev->r = new_cur;
+        } else {
+            free(cur_node);
+            old_prev->l = new_cur;
+        }
+    } else {
+        node *min_node = cur_node->r;
+        while (min_node->l != NULL) min_node = min_node->l;
+        cur_node->data = min_node->data;
+        delete_node(min_node);
     }
 }

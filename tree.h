@@ -14,6 +14,7 @@ struct Node{
     dtype data;
     node *l;
     node *r;
+    node *prev;
 };
 
 

@@ -71,12 +71,23 @@ int main(){
             } else {
                 printf("такая вершина есть!\n");
             }
-        } else if (query == 4) {
+        } else if (query == 4){
+            int cnt_d[MAXN];
+            for (int i = 0; i < MAXN; i++) cnt_d[i] = 0;
+            count_width(root, 0, cnt_d);
+            int max_width = 0;
+            for (int i = 0; i < MAXN; i++){
+                if (cnt_d[i] == 0) break;
+                if (max_width < cnt_d[i]) max_width = cnt_d[i];
+                printf("слой %d: %d\n", i+1, cnt_d[i]);
+            }
+            printf("ширина дерева: %d\n", max_width);
+        } else if (query == 5) {
             if (root == NULL) continue;
             int have_l[MAXN];
             for (int i = 0; i < MAXN; i++) have_l[i] = 0;
             print_tree(root, 0, have_l);
-        } else if (query == 5) {
+        } else if (query == 6) {
             break;
         } else {
             printf("попробуйте ещё раз.\n");

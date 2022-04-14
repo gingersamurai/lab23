@@ -36,6 +36,8 @@ void delete_node(node *cur_node);
 // находим вершину
 node *find_node(node* now_node, dtype value);
 
+// считаем ширину для каждого слоя
+void count_width(node *now_node, int depth, int cnt_d[MAXN]);
 
 // визуализируем дерево
 void print_tree(node *now_node, int depth, int have_l[MAXN]);

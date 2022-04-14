@@ -5,8 +5,9 @@ void print_menu(){
     printf("│1.добавить в дерево вершину │\n");
     printf("│2.удалить из дерева вершину │\n");
     printf("│3.найти вершину в дереве    │\n");
-    printf("│4.визуализировать дерево    │\n");
-    printf("│5.завершить работу программы│\n");
+    printf("│4.найти ширину дерева       │\n");
+    printf("│5.визуализировать дерево    │\n");
+    printf("│6.завершить работу программы│\n");
     printf("└────────────────────────────┘\n");
     printf("введите запрос: ");
 }
@@ -124,3 +125,11 @@ void delete_node(node *cur_node){
         delete_node(min_node);
     }
 }
+
+void count_width(node *now_node, int depth, int cnt_d[MAXN]){
+    if (now_node == NULL) return;
+    cnt_d[depth]++;
+    count_width(now_node->l, depth+1, cnt_d);
+    count_width(now_node->r, depth+1, cnt_d);
+}
+

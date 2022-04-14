@@ -1,15 +1,11 @@
 #include "tree.h"
 
 void print_menu(){
-    printf("------------------------------\n");
-    printf("|добавить в дерево вершину x:|\n");
-    printf("|add                         |\n");
-    printf("|x                           |\n");
-    printf("|визуализировать дерево:     |\n");
-    printf("|print                       |\n");
-    printf("|завершить работу программы: |\n");
-    printf("|exit                        |\n");
-    printf("------------------------------\n");
+    printf("┌────────────────────────────┐\n");
+    printf("│1.добавить в дерево вершину │\n");
+    printf("│2.визуализировать дерево    │\n");
+    printf("│3.завершить работу программы│\n");
+    printf("└────────────────────────────┘\n");
     printf("введите запрос: ");
 }
 
@@ -49,7 +45,14 @@ void print_tree(node *now_node, int depth, int have_l[MAXN]){
     if (now_node->r == NULL){
         printf("\n");
     } else {
-        printf("───");
+        if (now_node->data > -1 && now_node->data < 10){
+            printf("───");
+        } else if (now_node->data > -10 && now_node->data < 100){
+            printf("──");
+        } else {
+            printf("─");
+        }  
+        
         print_tree(now_node->r, depth+1, have_l);
     }
 

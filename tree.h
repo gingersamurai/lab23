@@ -29,6 +29,13 @@ node *create_node(dtype value);
 // добавляем узел в бинарное дерево поиска
 void insert_node(node *now_node, node *cur_node);
 
+// удаляем вершину по указателю
+void delete_node(node *cur_node);
+
+// находим вершину
+node *find_node(node* now_node, dtype value);
+
+
 // визуализируем дерево
 void print_tree(node *now_node, int depth, int have_l[MAXN]);
 

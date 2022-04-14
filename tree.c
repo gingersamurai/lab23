@@ -3,8 +3,10 @@
 void print_menu(){
     printf("┌────────────────────────────┐\n");
     printf("│1.добавить в дерево вершину │\n");
-    printf("│2.визуализировать дерево    │\n");
-    printf("│3.завершить работу программы│\n");
+    printf("│2.удалить из дерева вершину │\n");
+    printf("│3.найти вершину в дереве    │\n");
+    printf("│4.визуализировать дерево    │\n");
+    printf("│5.завершить работу программы│\n");
     printf("└────────────────────────────┘\n");
     printf("введите запрос: ");
 }
@@ -70,4 +72,40 @@ void print_tree(node *now_node, int depth, int have_l[MAXN]){
         print_tree(now_node->l, depth+1, have_l);
     }
 
+}
+
+node *find_node(node* now_node, dtype value){
+    if (now_node == NULL){
+        return NULL;
+    } else if (now_node->data == value){
+        return now_node;
+    } else if (now_node->data > value){
+        return find_node(now_node->l, value);
+    } else if (now_node->data < value){
+        return find_node(now_node->r, value);
+    }
+}
+
+void delete_node(node *cur_node){
+    if (cur_node == NULL) return;
+    if (cur_node->l == NULL && cur_node->r == NULL){
+        fprintf(stderr, "list\n");
+        free(cur_node);
+    } else if (cur_node->l == NULL && cur_node->r != NULL){
+        fprintf(stderr, "r\n");
+        node *buff;
+        buff->l = cur_node->r->l;
+        buff->r = cur_node->r->r;
+        buff->data = cur_node->r->data;
+        free(cur_node->r);
+        cur_node = buff;
+    } else if (cur_node->l != NULL && cur_node->r == NULL){
+        fprintf(stderr, "l\n");
+        node *buff;
+        buff->l = cur_node->l->l;
+        buff->r = cur_node->l->r;
+        buff->data = cur_node->l->data;
+        free(cur_node->l);
+        cur_node = buff;
+    }
 }

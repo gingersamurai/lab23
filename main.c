@@ -48,12 +48,35 @@ int main(){
             } else {
                 insert_node(root, new_node);
             }
-        } else if (query == 2) {
+        } else if (query == 2){
+            printf("введите вершину: ");
+            int x;
+            scanf("%d", &x);
+            node *res = find_node(root, x);
+            if (res == NULL){
+                printf("такой вершины нет\n");
+            } else {
+                printf("такая вершина есть!\n");
+            }
+            delete_node(res);
+
+        } else if (query == 3){
+            
+            printf("введите искомую вершину: ");
+            int x;
+            scanf("%d", &x);
+            node *res = find_node(root, x);
+            if (res == NULL){
+                printf("такой вершины нет\n");
+            } else {
+                printf("такая вершина есть!\n");
+            }
+        } else if (query == 4) {
             if (root == NULL) continue;
             int have_l[MAXN];
             for (int i = 0; i < MAXN; i++) have_l[i] = 0;
             print_tree(root, 0, have_l);
-        } else if (query == 3) {
+        } else if (query == 5) {
             break;
         } else {
             printf("попробуйте ещё раз.\n");

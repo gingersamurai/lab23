@@ -192,5 +192,139 @@ void count_width(node *now_node, int depth, int cnt_d[MAXN]){
 ```
 **tree.h**
 ```
+#ifndef tree_h
+#define tree_h
 
+#include <stdio.h>
+#include <stdlib.h>
+
+#define MAXN 1000
+
+
+typedef int dtype;
+typedef struct Node node;
+
+struct Node{
+    dtype data;
+    node *l;
+    node *r;
+    node *prev;
+};
+
+
+void print_menu();
+
+
+
+
+
+// создаем новый узел
+node *create_node(dtype value);
+
+// добавляем узел в бинарное дерево поиска
+void insert_node(node *now_node, node *cur_node);
+
+// удаляем вершину по указателю
+void delete_node(node *cur_node);
+
+// находим вершину
+node *find_node(node* now_node, dtype value);
+
+// считаем ширину для каждого слоя
+void count_width(node *now_node, int depth, int cnt_d[MAXN]);
+
+// визуализируем дерево
+void print_tree(node *now_node, int depth, int have_l[MAXN]);
+
+
+
+
+
+
+
+
+#endif
 ```
+**main.c**
+```
+#include "tree.h"
+
+
+
+
+int main(){
+    node *root = NULL;
+
+    int query;
+    int have_l[MAXN];
+    while (1000-7 == 1000-7){
+        print_menu();
+        scanf("%d", &query);
+        if (query == 1) {
+            printf("введите новую вершину: ");
+            int x;
+            scanf("%d", &x);
+            node *new_node = create_node(x);
+            if (root == NULL){
+                root = new_node;
+            } else {
+                insert_node(root, new_node);
+            }
+        } else if (query == 2){
+            printf("введите вершину: ");
+            int x;
+            scanf("%d", &x);
+            node *res = find_node(root, x);
+            if (res == NULL){
+                printf("такой вершины нет\n");
+            } else {
+                printf("такая вершина есть!\n");
+            }
+            delete_node(res);
+
+        } else if (query == 3){
+            
+            printf("введите искомую вершину: ");
+            int x;
+            scanf("%d", &x);
+            node *res = find_node(root, x);
+            if (res == NULL){
+                printf("такой вершины нет\n");
+            } else {
+                printf("такая вершина есть!\n");
+            }
+        } else if (query == 4){
+            int cnt_d[MAXN];
+            for (int i = 0; i < MAXN; i++) cnt_d[i] = 0;
+            count_width(root, 0, cnt_d);
+            int max_width = 0;
+            for (int i = 0; i < MAXN; i++){
+                if (cnt_d[i] == 0) break;
+                if (max_width < cnt_d[i]) max_width = cnt_d[i];
+                printf("слой %d: %d\n", i+1, cnt_d[i]);
+            }
+            printf("ширина дерева: %d\n", max_width);
+        } else if (query == 5) {
+            if (root == NULL) continue;
+            int have_l[MAXN];
+            for (int i = 0; i < MAXN; i++) have_l[i] = 0;
+            print_tree(root, 0, have_l);
+        } else if (query == 6) {
+            break;
+        } else {
+            printf("попробуйте ещё раз.\n");
+        }
+    }
+}
+```
+
+## 9. Дневник отладки
+--
+
+## 10. Замечания автора
+--
+# 11. Выводы
+Мной была изучена такая структура, как бинарное дерево.\
+Составлена программа реализации такого дерева.\
+Бинарное дерево – очень полезная структура,
+которая может решать различные задачи

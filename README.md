@@ -52,7 +52,7 @@
 
 # 8. Распечатка протокола
 **tree.c**
-```cpp
+```c
 #include "tree.h"
 
 void print_menu(){
@@ -191,7 +191,7 @@ void count_width(node *now_node, int depth, int cnt_d[MAXN]){
 
 ```
 **tree.h**
-```
+```c
 #ifndef tree_h
 #define tree_h
 
@@ -246,7 +246,7 @@ void print_tree(node *now_node, int depth, int have_l[MAXN]);
 #endif
 ```
 **main.c**
-```
+```c
 #include "tree.h"
 
 
@@ -318,7 +318,7 @@ int main(){
 }
 ```
 **Makefile**
-```
+```make
 run : main
 	./main
 
@@ -333,7 +333,7 @@ main.o : main.c
 ```
 
 пример работы:
-```
+```bash
 gingersamurai@LY530:~/lab/lab23$ make
 gcc -c main.c -o main.o
 gcc main.o tree.o -o main

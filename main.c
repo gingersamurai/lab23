@@ -13,8 +13,8 @@ int main(){
         scanf("%d", &query);
         if (query == 1) {
             printf("введите новую вершину: ");
-            int x;
-            scanf("%d", &x);
+            float x;
+            scanf("%f", &x);
             node *new_node = create_node(x);
             if (root == NULL){
                 root = new_node;
@@ -23,8 +23,8 @@ int main(){
             }
         } else if (query == 2){
             printf("введите вершину: ");
-            int x;
-            scanf("%d", &x);
+            float x;
+            scanf("%f", &x);
             node *res = find_node(root, x);
             if (res == NULL){
                 printf("такой вершины нет\n");
@@ -36,8 +36,8 @@ int main(){
         } else if (query == 3){
             
             printf("введите искомую вершину: ");
-            int x;
-            scanf("%d", &x);
+            float x;
+            scanf("%f", &x);
             node *res = find_node(root, x);
             if (res == NULL){
                 printf("такой вершины нет\n");

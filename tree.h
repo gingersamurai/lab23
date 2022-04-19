@@ -7,7 +7,7 @@
 #define MAXN 1000
 
 
-typedef int dtype;
+typedef float  dtype;
 typedef struct Node node;
 
 struct Node{

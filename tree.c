@@ -44,7 +44,7 @@ void insert_node(node *now_node, node *cur_node){
 }
 
 void print_tree(node *now_node, int depth, int have_l[MAXN]){
-    printf("%d", now_node->data);
+    printf("%f", now_node->data);
     if (now_node->l != NULL){
         have_l[depth] = 1;
     }
@@ -52,11 +52,11 @@ void print_tree(node *now_node, int depth, int have_l[MAXN]){
         printf("\n");
     } else {
         if (now_node->data > -1 && now_node->data < 10){
-            printf("───");
+            printf("───────");
         } else if (now_node->data > -10 && now_node->data < 100){
-            printf("──");
+            printf("──────");
         } else {
-            printf("─");
+            printf("─────");
         }  
         
         print_tree(now_node->r, depth+1, have_l);
@@ -65,13 +65,13 @@ void print_tree(node *now_node, int depth, int have_l[MAXN]){
     if (now_node->l != NULL){
         for (int i = 0; i < depth; i++) {
             if (have_l[i] == 1){
-                printf("│   ");
+                printf("│              ");
             } else {
-                printf("    ");
+                printf("               ");
             }
             
         }
-        printf("└───");
+        printf("└──────────────");
         have_l[depth] = 0;
         print_tree(now_node->l, depth+1, have_l);
     }

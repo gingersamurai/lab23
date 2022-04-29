@@ -59,7 +59,8 @@ int main(){
             if (root == NULL) continue;
             int have_l[MAXN];
             for (int i = 0; i < MAXN; i++) have_l[i] = 0;
-            print_tree(root, 0, have_l);
+            // print_tree(root, 0, have_l);
+            another_print_tree(root, 0);
         } else if (query == 6) {
             break;
         } else {

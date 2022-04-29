@@ -42,7 +42,8 @@ void count_width(node *now_node, int depth, int cnt_d[MAXN]);
 // визуализируем дерево
 void print_tree(node *now_node, int depth, int have_l[MAXN]);
 
-
+// визуализируем дерево, как хочет этого лабник
+void another_print_tree(node *now_node, int depth);
 
 
 

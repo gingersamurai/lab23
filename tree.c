@@ -126,6 +126,15 @@ void delete_node(node *cur_node){
     }
 }
 
+void another_print_tree(node *now_node, int depth){
+    
+    if (now_node->r != NULL) another_print_tree(now_node->r, depth+1);
+    for(int i = 0; i < depth; i++) printf("            ");
+    printf("%f\n\n", now_node->data);
+    if (now_node->l != NULL) another_print_tree(now_node->l, depth+1);
+}
+
+
 void count_width(node *now_node, int depth, int cnt_d[MAXN]){
     if (now_node == NULL) return;
     cnt_d[depth]++;
